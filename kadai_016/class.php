@@ -27,16 +27,14 @@
 
             public function show_price()
             {
-                echo $this->price;
+                return $this->price;
+            }
+
+            public function __toString()
+            {
+                return "Food Object ( [name:Food:private] => {$this->name} [price:Food:private] => {$this->price} )";
             }
         }
-
-        $food = new Food('おにぎり', 300);
-
-        echo "Food Object ( ";
-        echo "[name:Food:private] => " . $food->__get('name') . " ";
-        echo "[price:Food:private] => " . $food->__get('price') . " )";
-        echo "<br>";
 
         class Animal
         {
@@ -58,21 +56,25 @@
 
             public function show_height()
             {
-                echo $this->height;
+                return $this->height;
+            }
+            public function __toString()
+            {
+                return "Animal Object ( [name:Animal:private] => {$this->name} [height:Animal:private] => {$this->height} [weight:Animal:private] => {$this->weight} )";
             }
         }
 
+        $food = new Food('おにぎり', 300);
         $animal = new Animal('うさぎ', '30cm', '2kg');
 
-        echo "Animal Object ( ";
-        echo "[name:Animal:private] => " . $animal->__get('name') . " ";
-        echo "[height:Animal:private] => " . $animal->__get('height') . " ";
-        echo "[weight:Animal:private] => " . $animal->__get('weight') . " )";
+        print_r($food->__toString());
         echo "<br>";
+        print_r($animal->__toString());
 
         echo $food->show_price();
         echo "<br>";
         echo $animal->show_height();
+
         ?>
     </p>
 </body>
